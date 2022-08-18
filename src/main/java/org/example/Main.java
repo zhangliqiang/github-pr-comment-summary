@@ -28,9 +28,10 @@ public class Main {
             pullRequestComments.addAll(list);
             page++;
         } while (true);
-        System.out.println("________________________________");
-        System.out.println("| " + currentMonth + " 月份GitHub PR 审查汇总|");
-        System.out.println("________________________________");
+        System.out.println("__________________________________________");
+        System.out.println("| https://github.com/" + repo);
+        System.out.println("| " + currentMonth + " 月份GitHub PR 审查汇总");
+        System.out.println("__________________________________________");
         if (CollectionUtils.isNotEmpty(pullRequestComments)) {
             Map<String, Long> hm = pullRequestComments.stream().collect(Collectors.groupingBy(item -> ((LinkedHashMap) ((LinkedHashMap) item).get("user")).get("login").toString(), Collectors.counting()));
             List<String[]> lines = new ArrayList<>();
