@@ -1,0 +1,20 @@
+name: run
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'GitHub Repo'
+        required: true
+        default: "metersphere/metersphere"
+
+jobs:
+  package-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: 18
+      - run: mvn package
+      - run: cd target && java -jar pr-comment-summary-1.0-SNAPSHOT.jar ${{ github.event.inputs.repo }}
