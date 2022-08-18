@@ -16,5 +16,6 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: 18
+          distribution: 'temurin'
       - run: mvn package
       - run: cd target && java -jar pr-comment-summary-1.0-SNAPSHOT.jar ${{ github.event.inputs.repo }}
